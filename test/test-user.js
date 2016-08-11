@@ -14,7 +14,7 @@ var should = chai.should();
 
 chai.use(chaiHttp);
 
-describe('User endpoints', function() {
+describe.only('User endpoints', function() {
     beforeEach(function(done) {
         // Clear the database
         mongoose.connection.db.dropDatabase(done);
@@ -78,6 +78,7 @@ describe('User endpoints', function() {
                     .send(user)
                     .then(function(res) {
                         // Check that an empty object is returned
+                        console.log(res.body);
                         res.should.have.status(201);
                         res.type.should.equal('application/json');
                         res.charset.should.equal('utf-8');
